@@ -6,11 +6,12 @@ import (
 
 	"purpleProject/configs"
 	"purpleProject/internal/auth"
+	"purpleProject/pkg/db"
 )
 
 func main() {
 	conf := configs.LoadConfig()
-
+	_ = db.NewDb(conf)
 	router := http.NewServeMux()
 	auth.NewAuthHandler(router, auth.AuthConfigDeps{
 		Config: conf,
